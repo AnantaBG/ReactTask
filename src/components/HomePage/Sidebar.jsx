@@ -22,8 +22,8 @@ const Sidebar = () => {
     return (
         <>
             <div className="">
-                <h2 className="text-xl md:text-2xl font-semibold">{user?.displayName}</h2>
-                <h2 className="my-2 text-[10px] sm:text-xs md:text-sm text-gray-600">{user?.email}</h2>
+                <h2 className=" md:text-2xl font-semibold">{user?.displayName}</h2>
+         
                 <hr />
             </div>
             <div className="">
