@@ -68,7 +68,7 @@ const [showPassword, setShowPassword] = useState(false);
     return (
       <div className="my-10 w-9/12 mx-auto">
         <Helmet>
-        <title>Taskman || Login</title>
+        <title>React Tasks || Login</title>
     </Helmet>
         <form onSubmit={handleSubmit}  className="flex max-w-screen-md  mx-auto flex-col gap-4">
           <label className="text-4xl font-extrabold mx-auto">Login</label>

@@ -1,15 +1,15 @@
 ## 📌 Overview  
-This is a **Task Management Application** where users can add, edit, delete, and reorder tasks using a **drag-and-drop** interface. Tasks are categorized into **To-Do, In Progress, and Done** sections, ensuring an organized workflow. The app provides **real-time updates** and maintains data persistence through a **MongoDB database**.  
+This is a **Job Task App**. The app provides **real-time updates** and maintains data persistence through a **MongoDB database**.  
 
 Users must authenticate via **Firebase Authentication (Google Sign-In)** to access the application. The app features a **modern, minimalistic UI** and is **fully responsive** for both desktop and mobile users.  
 
 ## 🚀 Live Demo  
-🔗 **Frontend:** [https://taskman-er.web.app/](#)  
+🔗 **Frontend:** [https://reacttasks77.web.app/](#)  
 🔗 **Backend:** [https://task-management-server-iota-rose.vercel.app/](#)  
 
 ---
 
-## 📂 Table of Contents  
+<!-- ## 📂 Table of Contents  
 - [Features](#-features)  
 - [Technologies Used](#-technologies-used)  
 - [Installation](#-installation)   
@@ -63,4 +63,4 @@ This project is licensed under the **MIT License**.
 ```sh
 git clone https://github.com/AnantaBG/TaskManagementBG
 cd task-manager
-
+ -->

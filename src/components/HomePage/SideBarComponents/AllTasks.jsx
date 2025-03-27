@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import UseAxiosPublic from '../../Auth/UseAxiosPublic';
 import { FaTag, FaListUl, FaDollarSign, FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaSearch } from 'react-icons/fa'; // Import sorting icons
 import Loading from '../Loading';
+import { Helmet } from 'react-helmet';
 
 const AllTasks = () => {
     const axiosPublic = UseAxiosPublic();
@@ -131,11 +132,14 @@ const AllTasks = () => {
 
     return (
         <div>
+            <Helmet>
+        <title>React Tasks || Home-Details</title>
+            </Helmet>
             <div className="flex flex-col mt-">
                 <h1 className='text-2xl flex justify-center mx-auto text-center font-bold mb-1'>All Items</h1>
                 <hr />
                 <div className="mb-4 mt-4 flex justify-center w-full mx-auto">
-                    <div className='flex flex-col sm:flex-row gap-4 w-full max-w-lg'> {/* Added max-w-lg */}
+                    <div className='flex flex-col sm:flex-row gap-4 w-full max-w-xl justify-center mx-auto'>
                         <div>
                             <label htmlFor="sort" className="text-gray-700 text-sm font-bold mb-2 block">
                                 Sort By:
@@ -191,7 +195,7 @@ const AllTasks = () => {
                             <Table.HeadCell>
                                 <div className="flex items-center">
                                     <FaDollarSign className="mr-2" />
-                                    Value {sortBy === 'value' && getValueSortIcon('value')}
+                                    Price {sortBy === 'value' && getValueSortIcon('value')}
                                 </div>
                             </Table.HeadCell>
                         </Table.Head>
