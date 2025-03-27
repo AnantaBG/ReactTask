@@ -1,97 +1,84 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-// import { Helmet } from "react-helmet";
-import { Button, Label, TextInput } from "flowbite-react";
-import Swal from "sweetalert2";
-import UseAxiosPublic from "./UseAxiosPublic";
-import { AuthC } from "./AuthProviderx";
-import { Helmet } from "react-helmet";
+ import { Link, useLocation, useNavigate } from "react-router-dom";
+ import { FcGoogle } from "react-icons/fc";
+ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+ import { Button, Label, TextInput } from "flowbite-react";
+ import Swal from "sweetalert2";
+ import UseAxiosPublic from "./UseAxiosPublic";
+ import { AuthC } from "./AuthProviderx";
+ import { Helmet } from "react-helmet";
 
 
-const Register = () => {
+ const Register = () => {
   const axiosPublic = UseAxiosPublic();
   const {createNewUser, setUser, updateP, googleSignIn} = useContext(AuthC);
   const [error, setError] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
   const location = useLocation();
-const navigate = useNavigate();
+ const navigate = useNavigate();
 
 
   const handleSubmit=(e) =>{
-    e.preventDefault();
-    const form = new FormData(e.target);
-    const Name = form.get("Name");
-    const Email = form.get("Email");
-    const Photo = form.get("Photo");
-    const Password = form.get("password");
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    if(!passwordRegex.test(Password)){
-      setError({...error, Password:"Password must have at least 6 characters, One Uppercase letter, and One Lowercase letter."})
-      return;
-    }
+   e.preventDefault();
+   const form = new FormData(e.target);
+   const Name = form.get("Name");
+   const Email = form.get("Email");
+   const Photo = form.get("Photo");
+   const Password = form.get("password");
+   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+   if(!passwordRegex.test(Password)){
+    setError({...error, Password:"Password must have at least 6 characters, One Uppercase letter, and One Lowercase letter."})
+    return;
+   }
 
-    createNewUser(Email, Password)
-    .then(result =>{
-      const user = result.user;
-      
-      updateP({displayName:Name, photoURL:Photo})
-      
-      .then(
-        () => {
-          const userInfo = {
-            name: Name,
-            email: Email
-          }
-          axiosPublic.post('/users', userInfo)
-          .then(res =>
-          {
-            if(res.data.insertedId){
-              Swal.fire({
-                          icon: 'success',
-                          title: 'Congratualtions!',
-                          text: 'User Created Successfully',
-                        });
-            }
-          })
-        }
-      );
-      setUser(user);
-      navigate(location?.state ? location.state : "/")
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      // const errorMessage = error.message;
+   createNewUser(Email, Password)
+   .then(result =>{
+    const user = result.user;
+    
+    updateP({displayName:Name, photoURL:Photo})
+    
+    .then(
+     () => {
       Swal.fire({
-              icon: 'error',
-              title: 'Error!',
-              text: `${errorCode}`,
-            });  
-    });
+          icon: 'success',
+          title: 'Congratualtions!',
+          text: 'User Created Successfully',
+         });
+     }
+    );
+    setUser(user);
+    navigate(location?.state ? location.state : "/")
+   })
+   .catch((error) => {
+    const errorCode = error.code;
+    // const errorMessage = error.message;
+    Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: `${errorCode}`,
+       }); 
+   });
   }
   const handleGoogleSignUp = () => {
-    googleSignIn()
-    .then(result => {
-      
-      const userInfo = {
-        email: result.user?.email,
-        name: result.user?.displayName
-      }
-      axiosPublic.post('/users', userInfo)
-          .then(res =>
-          {
-            if(res.data.insertedId){
-              Swal.fire({
-                          icon: 'success',
-                          title: 'Congratualtions!',
-                          text: 'Google Login/Register Successfully',
-                        });
-            }
-            navigate(location?.state ? location.state : "/")
-          })
-    })
+   googleSignIn()
+   .then(result => {
+    Swal.fire({
+          icon: 'success',
+          title: 'Congratualtions!',
+          text: 'Google Login/Register Successfully',
+         });
+     navigate(location?.state ? location.state : "/")
+   })
+   .catch(error => {
+     console.error("Error signing in with Google:", error);
+     Swal.fire({
+       icon: 'error',
+       title: 'Error!',
+       text: `Could not sign in with Google: ${error.message}`,
+     });
+   });
   }
     return (
 <div className="my-10 w-9/12 mx-auto">

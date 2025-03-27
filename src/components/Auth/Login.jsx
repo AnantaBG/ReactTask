@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {  useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -46,28 +47,24 @@ const [showPassword, setShowPassword] = useState(false);
     });
   }
   const handleGoogleSignIn = () => {
-    googleSignIn()
-    .then(result => {
-          
-          const userInfo = {
-            email: result.user?.email,
-            name: result.user?.displayName
-          }
-          axiosPublic.post('/users', userInfo)
-              .then(res =>
-                
-              {
-                if(res.data.insertedId){
-                  Swal.fire({
-                              icon: 'success',
-                              title: 'Congratualtions!',
-                              text: 'Google Login/Register Successfully',
-                            });
-                }
-                navigate(location?.state ? location.state : "/")
-              })
-        })
-  }
+   googleSignIn()
+   .then(result => {
+     Swal.fire({
+          icon: 'success',
+          title: 'Congratualtions!',
+          text: 'Google Login Successfully',
+         });
+     navigate(location?.state ? location.state : "/")
+   })
+   .catch(error => {
+     console.error("Error signing in with Google:", error);
+     Swal.fire({
+       icon: 'error',
+       title: 'Error!',
+       text: `Could not sign in with Google: ${error.message}`,
+     });
+   });
+ }
     return (
       <div className="my-10 w-9/12 mx-auto">
         <Helmet>
