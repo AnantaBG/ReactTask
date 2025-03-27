@@ -1,5 +1,4 @@
 
-import AllDataCard from "./AllDataCard";
 
 
 const AllTasks = () => {
@@ -7,7 +6,7 @@ const AllTasks = () => {
     return (
         <div>
         <div className="flex flex-col mt-5">
-            <AllDataCard></AllDataCard>
+            <h1>hello</h1>
         </div>
         </div>
          );  

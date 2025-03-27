@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { CgNotes } from "react-icons/cg";
-import { MdDoneOutline } from "react-icons/md";
-import { RiProgress1Line, RiTodoLine } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 import { AuthC } from "../Auth/AuthProviderx";
 
@@ -12,24 +10,9 @@ const Sidebar = () => {
 
     const TaskCategory = [
         {
-            title: "All Tasks",
+            title: "Details",
             icon: <CgNotes />,
             link: "/"
-        },
-        {
-            title: "To-Do",
-            icon: <RiTodoLine />,
-            link: "/todo" // Add the leading slash
-        },
-        {
-            title: "In-Progrss",
-            icon: <RiProgress1Line />,
-            link: "/inprogress" // Add the leading slash
-        },
-        {
-            title: "Done",
-            icon: <MdDoneOutline />,
-            link: "/done" // Add the leading slash
         }
     ];
 

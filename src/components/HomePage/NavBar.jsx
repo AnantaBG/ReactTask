@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom"; 
